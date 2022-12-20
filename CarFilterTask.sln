@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarFilterTask", "CarFilterTask\CarFilterTask.csproj", "{B2AB6FFE-A161-412B-9FC2-C4A162E40F1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2AB6FFE-A161-412B-9FC2-C4A162E40F1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2AB6FFE-A161-412B-9FC2-C4A162E40F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2AB6FFE-A161-412B-9FC2-C4A162E40F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2AB6FFE-A161-412B-9FC2-C4A162E40F1C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4CDDB85C-5E63-4DFF-BB9F-316DE8F65529}
+	EndGlobalSection
+EndGlobal
