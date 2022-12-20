@@ -6,21 +6,47 @@
         xmlns:local="clr-namespace:CarFilterTask"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <StackPanel>
-            <ComboBox></ComboBox>
-            
-            <CheckBox Margin="0,10,0,0" Content="New" FontSize="20"></CheckBox>
-            
-            <CheckBox  Content="Old" FontSize="20"></CheckBox>
+    <Grid >
+        <StackPanel  Background="White">
+            <ComboBox Width="500" Name="Marka" ></ComboBox>
 
-            <ComboBox></ComboBox>
+            <CheckBox Width="500" Margin="0,10,0,0" Content="New" FontSize="20"></CheckBox>
 
-            <StackPanel Orientation="Horizontal">
-                <Label
+            <CheckBox Width="500" Content="Old" FontSize="20"></CheckBox>
+
+            <ComboBox Background="#99eedf" Width="500" Margin="0,10,0,0" Name="BanNovu"></ComboBox>
+
+            <StackPanel Width="500" Margin="0,10,0,0" Orientation="Horizontal" >
+                <Label Margin="0,0,20,0" Content="Yurush" FontSize="20"></Label>
+                <Label Foreground="Red" Content="Min" FontSize="20"></Label>
+                <TextBox Margin="0,0,20,0" Width="100" Height="20" ></TextBox>
+                <Label Foreground="Red" Content="Max" FontSize="20"></Label>
+                <TextBox Margin="0,0,20,0" Width="100" Height="20" ></TextBox>
             </StackPanel>
-
+            <StackPanel Width="500" Margin="0,10,0,0" Orientation="Horizontal" >
+                <Label Margin="0,0,20,0" Content="Buraxilis Ili" FontSize="20"></Label>
+                <Label Foreground="Red" Content="Min" FontSize="20"></Label>
+                <TextBox Margin="0,0,20,0" Width="100" Height="20" ></TextBox>
+                <Label Foreground="Red" Content="Max" FontSize="20"></Label>
+                <TextBox Margin="0,0,20,0" Width="100" Height="20" ></TextBox>
             </StackPanel>
+            <ComboBox Name="ColorComboBox" Width="500" Margin="0,10,0,0" ></ComboBox>
+            
+            <StackPanel Width="500" Margin="0,10,0,0" Orientation="Horizontal" >
+                <Label Margin="0,0,20,0" Content="Qiymet" FontSize="20"></Label>
+                <Label Foreground="Red" Content="Min" FontSize="20"></Label>
+                <TextBox Margin="0,0,20,0" Width="100" Height="20" ></TextBox>
+                <Label Foreground="Red" Content="Max" FontSize="20"></Label>
+                <TextBox Margin="0,0,20,0" Width="100" Height="20" ></TextBox>
+            </StackPanel>
+            <Button Margin="0,10,0,0" Content="Show" FontSize="20" Background="White" Width="500" BorderBrush="Gray">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
         
     </Grid>
 </Window>
