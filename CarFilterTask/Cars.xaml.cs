@@ -25,7 +25,7 @@ namespace CarFilterTask
         public Cars()
         {
             InitializeComponent();
-            
+            MyDataGrid.ItemsSource= CarsDatas;
         }
     }
 }

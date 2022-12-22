@@ -19,6 +19,6 @@ namespace CarFilterTask.Entities
         public bool IsNew { get; set; }
         public virtual Brand Brand { get; set; }
         public virtual Cartype Type { get; set; }
-
+        
     }
 }

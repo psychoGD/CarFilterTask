@@ -8,7 +8,9 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid x:Name="MainDataGrid">
         <StackPanel  Background="White">
-            <ComboBox Width="500" Name="Marka" ></ComboBox>
+            <ComboBox Width="500" Name="Marka" FontSize="16">
+                <ComboBoxItem Content="Hello" ></ComboBoxItem>
+            </ComboBox>
 
             <CheckBox Width="500" Margin="0,10,0,0" Content="New" FontSize="20"></CheckBox>
 

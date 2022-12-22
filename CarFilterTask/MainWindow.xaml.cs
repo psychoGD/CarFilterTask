@@ -23,14 +23,11 @@ namespace CarFilterTask
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<Car> CarsDatas { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
             var conn = ConfigurationManager.ConnectionStrings["MyConnString"].ConnectionString;
             using (var connection = new SqlConnection(conn))
             {
@@ -39,19 +36,33 @@ SELECT *
 FROM Car 
 INNER JOIN Brand
 ON Car.BrandId=Brand.Id
-INNER JOIN Type
-ON Type.Id=Car.TypeId";
-                var cars = connection.Query<Car,Brand,Type,Car>(query,
+INNER JOIN CarType
+ON CarType.Id=Car.TypeId";
+
+                CarsDatas = connection.Query<Car, Brand, Cartype, Car>(query,
                     (car, brand, type) =>
                     {
                         car.Brand = brand;
-                        car.Type= type;
+                        car.Type = type;
                         return car;
-                    },splitOn:"BrandId,TypeId").ToList();
-                var Uc = new Cars();
-                Uc.CarsDatas= cars;
-                MainDataGrid.Children.Add(Uc);
+                    }, splitOn: "BrandId,TypeId").ToList();
+                foreach (var item in CarsDatas)
+                {
+                    Marka.Items.Add(item.Brand.Name);
+
+                }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+          
+
+                var Uc = new Cars();
+
+                Uc.MyDataGrid.ItemsSource = CarsDatas;
+
+                MainDataGrid.Children.Add(Uc);
         }
     }
 }
