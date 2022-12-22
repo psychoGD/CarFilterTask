@@ -64,7 +64,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Entities\Brand.cs" />
+    <Compile Include="Brand.cs" />
+    <Compile Include="Car.cs" />
+    <Compile Include="CarType.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
