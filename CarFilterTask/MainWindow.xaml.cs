@@ -14,7 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using CarFilterTask.Entities;
+using Dapper;
 namespace CarFilterTask
 {
     /// <summary>
@@ -40,7 +41,16 @@ INNER JOIN Brand
 ON Car.BrandId=Brand.Id
 INNER JOIN Type
 ON Type.Id=Car.TypeId";
-                var cars = connection.Query
+                var cars = connection.Query<Car,Brand,Type,Car>(query,
+                    (car, brand, type) =>
+                    {
+                        car.Brand = brand;
+                        car.Type= type;
+                        return car;
+                    },splitOn:"BrandId,TypeId").ToList();
+                var Uc = new Cars();
+                Uc.CarsDatas= cars;
+                MainDataGrid.Children.Add(Uc);
             }
         }
     }

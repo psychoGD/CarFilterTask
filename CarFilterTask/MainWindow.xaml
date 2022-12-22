@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CarFilterTask"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid >
+    <Grid x:Name="MainDataGrid">
         <StackPanel  Background="White">
             <ComboBox Width="500" Name="Marka" ></ComboBox>
 
