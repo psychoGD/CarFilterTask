@@ -37,7 +37,10 @@ namespace CarFilterTask
 SELECT * 
 FROM Car 
 INNER JOIN Brand
-ON Car.BrandId=Brand.Id";
+ON Car.BrandId=Brand.Id
+INNER JOIN Type
+ON Type.Id=Car.TypeId";
+                var cars = connection.Query
             }
         }
     }
