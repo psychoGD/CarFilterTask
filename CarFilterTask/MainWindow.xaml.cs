@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,23 @@ namespace CarFilterTask
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var conn = ConfigurationManager.ConnectionStrings["MyConnString"].ConnectionString;
+            using (var connection = new SqlConnection(conn))
+            {
+                var query = @"
+SELECT * 
+FROM Car 
+INNER JOIN Brand
+ON Car.BrandId=Brand.Id";
+            }
         }
     }
 }
