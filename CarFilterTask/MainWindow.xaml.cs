@@ -24,7 +24,41 @@ namespace CarFilterTask
     public partial class MainWindow : Window
     {
         private List<Car> CarsDatas { get; set; }
+        public List<string> Colors { get; set; } = new List<string>();
 
+        private string selectedCarBrand;
+
+        public string SelectedCarBrand
+        {
+            get { return selectedCarBrand; }
+            set { selectedCarBrand = value; }
+        }
+
+        private string selectedCarType;
+
+        public string SelectedCarType
+        {
+            get { return selectedCarType; }
+            set { selectedCarType = value; }
+        }
+
+        private string selectedCarColor;
+
+        public string SelectedCarColor
+        {
+            get { return selectedCarColor; }
+            set { selectedCarColor = value; }
+        }
+
+
+        public int minKilometer { get; set; }
+        public int maxKilometer { get; set; }
+
+        public int minYear { get; set; }
+        public int maxYear { get; set; }
+
+        public double minPrice { get; set; }
+        public double maxPrice { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -42,7 +76,7 @@ ON CarType.Id=Car.TypeId";
                 CarsDatas = connection.Query<Car, Brand, Cartype, Car>(query,
                     (car, brand, type) =>
                     {
-                        car.BrandId= brand.Id;
+                        car.BrandId = brand.Id;
                         car.Brand = brand;
                         car.TypeId = type.Id;
                         car.Cartype = type;
@@ -52,21 +86,33 @@ ON CarType.Id=Car.TypeId";
                 {
                     Marka.Items.Add(item.Brand.Name);
                     BanNovu.Items.Add(item.Cartype.Name);
-
-                    ColorComboBox.Items.Add(item.Color);
+                    var exist = Colors.Contains(item.Color);
+                    if (!exist)
+                    {
+                        Colors.Add(item.Color);
+                    }
                 }
+                ColorComboBox.ItemsSource = Colors;
+
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-          
 
-                var Uc = new Cars();
 
-                Uc.MyDataGrid.ItemsSource = CarsDatas;
+            var Uc = new Cars();
+            var datasCopy = CarsDatas.Where(c => c.Brand.Name == SelectedCarBrand || c.Cartype.Name == SelectedCarType || c.IsNew == IsNewCB.IsChecked || 
+            c.Price <= minPrice || c.Price >= maxPrice || 
+            c.Year >= minYear || c.Year <=maxYear ||
+            c.Kilometers >=minKilometer || c.Kilometers <=maxKilometer
+            );
+            MessageBox.Show(datasCopy.Count().ToString());
+            //Uc.CarsDatas = datasCopy.ToList();
+            //Uc.CarsDatas = CarsDatas;
+            Uc.MyDataGrid.ItemsSource= datasCopy;
+            MainDataGrid.Children.Add(Uc);
 
-                MainDataGrid.Children.Add(Uc);
         }
     }
 }
