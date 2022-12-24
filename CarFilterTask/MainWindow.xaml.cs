@@ -42,14 +42,18 @@ ON CarType.Id=Car.TypeId";
                 CarsDatas = connection.Query<Car, Brand, Cartype, Car>(query,
                     (car, brand, type) =>
                     {
+                        car.BrandId= brand.Id;
                         car.Brand = brand;
-                        car.Type = type;
+                        car.TypeId = type.Id;
+                        car.Cartype = type;
                         return car;
-                    }, splitOn: "BrandId,TypeId").ToList();
+                    }).ToList();
                 foreach (var item in CarsDatas)
                 {
                     Marka.Items.Add(item.Brand.Name);
+                    BanNovu.Items.Add(item.Cartype.Name);
 
+                    ColorComboBox.Items.Add(item.Color);
                 }
             }
         }
