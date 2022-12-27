@@ -59,9 +59,15 @@ namespace CarFilterTask
 
         public double minPrice { get; set; }
         public double maxPrice { get; set; }
+
+        public bool IsNew { get; set; } 
+        public bool IsOld { get; set; } 
+        
+
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext= this;
             var conn = ConfigurationManager.ConnectionStrings["MyConnString"].ConnectionString;
             using (var connection = new SqlConnection(conn))
             {
@@ -101,18 +107,60 @@ ON CarType.Id=Car.TypeId";
         {
 
 
+
+
             var Uc = new Cars();
-            var datasCopy = CarsDatas.Where(c => c.Brand.Name == SelectedCarBrand || c.Cartype.Name == SelectedCarType || c.IsNew == IsNewCB.IsChecked || 
-            c.Price <= minPrice || c.Price >= maxPrice || 
-            c.Year >= minYear || c.Year <=maxYear ||
-            c.Kilometers >=minKilometer || c.Kilometers <=maxKilometer
-            );
-            MessageBox.Show(datasCopy.Count().ToString());
+            var DatasCopy = new List<Car>(CarsDatas);
+
+
+            if (IsNew == true)
+            {
+                DatasCopy = DatasCopy.Where(c => c.IsNew == IsNew).ToList();
+            }
+            else if (IsOld == true)
+            {
+                DatasCopy = CarsDatas.Where(c => c.IsNew == false).ToList();
+            }
+            
+
+            if (SelectedCarBrand != null)
+                DatasCopy = DatasCopy.Where(c => c.Brand.Name == SelectedCarBrand).ToList();
+            if (SelectedCarType != null)
+                DatasCopy = DatasCopy.Where(c => c.Cartype.Name == SelectedCarType).ToList();
+            
+            //Price Filter
+            if (minPrice != 0)
+                DatasCopy = DatasCopy.Where(c => c.Price >= minPrice).ToList();
+            if (maxPrice != 0)
+                DatasCopy = DatasCopy.Where(c => c.Price <= maxPrice).ToList();
+
+            //Year Filter
+            if (minYear != 0)
+                DatasCopy = DatasCopy.Where(c => c.Year >= minYear).ToList();
+            if (maxYear != 0)
+                DatasCopy = DatasCopy.Where(c => c.Year <= maxYear).ToList();
+
+            //Kilometer Filter
+            if(minKilometer != 0)
+                DatasCopy = DatasCopy.Where(c => c.Kilometers >= minKilometer).ToList();
+            if (maxKilometer != 0)
+                DatasCopy = DatasCopy.Where(c => c.Kilometers <= maxKilometer).ToList();
+
+            if(SelectedCarColor!=null)
+                DatasCopy = DatasCopy.Where(c => c.Color == SelectedCarColor).ToList();
+            //var datasCopy = CarsDatas.Where(c => c.Brand.Name == SelectedCarBrand || c.Cartype.Name == SelectedCarType || c.IsNew == IsNewCB.IsChecked ||
+            //c.Price <= minPrice || c.Price >= maxPrice ||
+            //c.Year >= minYear || c.Year <= maxYear ||
+            //c.Kilometers >= minKilometer || c.Kilometers <= maxKilometer
+            //);
+
             //Uc.CarsDatas = datasCopy.ToList();
             //Uc.CarsDatas = CarsDatas;
-            Uc.MyDataGrid.ItemsSource= datasCopy;
+            Uc.MyDataGrid.ItemsSource = DatasCopy;
             MainDataGrid.Children.Add(Uc);
 
         }
+
+        
     }
 }

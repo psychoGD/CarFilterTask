@@ -8,10 +8,11 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid x:Name="MainDataGrid">
         <StackPanel  Background="White">
-            <ComboBox Width="500" Name="Marka" FontSize="16" SelectedItem="{Binding SelectedCarBrand}">
+            <ComboBox Width="500" Name="Marka" FontSize="16" SelectedValue="{Binding SelectedCarBrand}">
             </ComboBox>
 
-            <CheckBox Width="500" Margin="0,10,0,0" Content="New" FontSize="20" Name="IsNewCB"></CheckBox>
+            <CheckBox Width="500" Margin="0,10,0,0" Content="New" FontSize="20" Name="IsNewCB" IsChecked="{Binding IsNew}" ></CheckBox>
+            <CheckBox Width="500" Margin="0,10,0,0" Content="Old" FontSize="20" Name="IsOldCB" IsChecked="{Binding IsOld}" ></CheckBox>
 
             <ComboBox Background="#99eedf" Width="500" Margin="0,10,0,0" Name="BanNovu" SelectedItem="{Binding SelectedCarType}"></ComboBox>
 

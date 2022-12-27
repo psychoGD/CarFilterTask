@@ -38,4 +38,8 @@ ADD [IsNew] BIT  NOT NULL
 
 INSERT INTO CarType([Name]) VALUES('Jeep'),('Sedan')
 INSERT INTO Brand([Name]) VALUES('BMW'),('Mercedes')
-INSERT INTO Car([Name],[Year],[Price],[Kilometers],[Color],[IsNew],[BrandId],[TypeId]) VALUES('x5',2019,70000,100,'Black',1,1,1)
+INSERT INTO Car([Name],[Year],[Price],[Kilometers],[Color],[IsNew],[BrandId],[TypeId]) 
+VALUES('x5',2019,70000,100,'Black',1,1,1)
+
+INSERT INTO Car([Name],[Year],[Price],[Kilometers],[Color],[IsNew],[BrandId],[TypeId]) 
+VALUES('s-class',2019,50000,100,'White',1,2,2)
